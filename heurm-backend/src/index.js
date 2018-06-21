@@ -1,9 +1,10 @@
 require('dotenv').config();
 
-const Koa = require('Koa');
+const Koa = require('koa');
 const Router = require('koa-router');
-const bodyParser = require('koa-bodyparser');
+const bodyParser = require('koa-bodyParser');
 const mongoose = require('mongoose');
+const { jwtMiddleware } = require('lib/token');
 
 const app = new Koa();
 const router = new Router();
@@ -11,18 +12,14 @@ const api = require('api');
 
 const port = process.env.PORT || 4000;
 
-// connect to mongo db
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log('Server is connected to DB'))
-  .catch(e => console.error(e));
+  .then(() => console.log('Connecting to DB'))
+  .catch(err => console.error(err));
 
-// set body parser
 app.use(bodyParser());
-
-// set route
+app.use(jwtMiddleware);
 router.use('/api', api.routes());
 app.use(router.routes()).use(router.allowedMethods());
 
-// run server
 app.listen(port, () => console.log(`Server is running on port ${port}`));
