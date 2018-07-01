@@ -2,5 +2,7 @@
 
 .header {
   height: 50px;
-  color: $pink;
+  &.pink {
+    color: $pink;
+  }
 }
