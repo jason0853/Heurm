@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
-import Header from 'components/base/Header';
+import { connect } from 'react-redux';
+import Header, { LoginButton } from 'components/base/Header';
 
 class HeaderContainer extends Component {
   render() {
-    return <Header>Header</Header>;
+    const { visible } = this.props;
+    if (!visible) return null;
+
+    return (
+      <Header>
+        <LoginButton />
+      </Header>
+    );
   }
 }
 
-export default HeaderContainer;
+export default connect(state => ({
+  visible: state.base.header.visible
+}))(HeaderContainer);

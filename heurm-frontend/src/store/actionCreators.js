@@ -1,11 +1,10 @@
 import { bindActionCreators } from 'redux';
 import store from './index';
 
-import { actionCreators as baseActionCreators } from './modules/base';
+import { actionCreators as baseActions } from './modules/base';
+import { actionCreators as authActions } from './modules/auth';
 
 const { dispatch } = store;
 
-export const BaseActionCreators = bindActionCreators(
-  baseActionCreators,
-  dispatch
-);
+export const BaseActions = bindActionCreators(baseActions, dispatch);
+export const AuthActions = bindActionCreators(authActions, dispatch);

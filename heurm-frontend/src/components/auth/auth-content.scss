@@ -1,0 +1,12 @@
+@import "utils";
+
+.auth {
+  &-content {
+    background: $white;
+    padding: 2rem;
+    height: auto;
+  }
+  &-title {
+    @include font-style(1.5rem, $oc-gray-8, 500);
+  }
+}

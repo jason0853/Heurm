@@ -1,0 +1,12 @@
+@import "utils";
+
+.right-aligned-link {
+  margin-top: 1rem;
+  text-align: right;
+  a {
+    color: $oc-gray-6;
+    &:hover {
+      color: $oc-gray-7;
+    }
+  }
+}

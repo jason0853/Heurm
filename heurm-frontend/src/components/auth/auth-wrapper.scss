@@ -1,0 +1,23 @@
+@import "utils";
+
+.auth {
+  &-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+  }
+  &-logo {
+    display: flex;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+    background: $oc-teal-7;
+    a {
+      @include font-style(2.4rem, $white);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+  }
+}

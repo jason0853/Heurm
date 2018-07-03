@@ -10,7 +10,7 @@ const SET_HEADER_VISIBILITY = 'base/SET_HEADER_VISIBILITY';
  * Action Creators
  */
 export const actionCreators = {
-  setHeaderVisibility: createAction(SET_HEADER_VISIBILITY)
+  setHeaderVisibility: createAction(SET_HEADER_VISIBILITY) // visible
 };
 
 /**
@@ -18,7 +18,7 @@ export const actionCreators = {
  */
 const InitialState = Record({
   header: Record({
-    visible: false
+    visible: true
   })()
 })();
 
@@ -27,8 +27,9 @@ const InitialState = Record({
  */
 export default handleActions(
   {
-    [SET_HEADER_VISIBILITY]: (state, action) =>
-      state.setIn(['header', 'visible'], action.payload)
+    [SET_HEADER_VISIBILITY]: (state, action) => {
+      return state.setIn(['header', 'visible'], action.payload);
+    }
   },
   InitialState
 );
