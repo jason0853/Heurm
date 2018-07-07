@@ -14,9 +14,9 @@ export const actionCreators = {
 };
 
 /**
- * Initial State
+ * Initial States
  */
-const InitialState = Record({
+const initialState = Record({
   header: Record({
     visible: true
   })()
@@ -27,9 +27,8 @@ const InitialState = Record({
  */
 export default handleActions(
   {
-    [SET_HEADER_VISIBILITY]: (state, action) => {
-      return state.setIn(['header', 'visible'], action.payload);
-    }
+    [SET_HEADER_VISIBILITY]: (state, action) =>
+      state.setIn(['header', 'visible'], action.payload)
   },
-  InitialState
+  initialState
 );

@@ -1,30 +1,7 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import { BaseActions } from 'store/actionCreators';
-import { AuthTemplate, AuthWrapper } from 'components/auth';
-import LoginContainer from 'containers/auth/LoginContainer';
-import RegisterContainer from 'containers/auth/RegisterContainer';
+import React from "react";
 
-class Auth extends Component {
-  constructor() {
-    super();
-    BaseActions.setHeaderVisibility(false);
-  }
-
-  componentWillUnmount() {
-    BaseActions.setHeaderVisibility(true);
-  }
-
-  render() {
-    return (
-      <AuthTemplate>
-        <AuthWrapper>
-          <Route path="/auth/login" component={LoginContainer} />
-          <Route path="/auth/register" component={RegisterContainer} />
-        </AuthWrapper>
-      </AuthTemplate>
-    );
-  }
-}
+const Auth = () => {
+  return <div>Auth</div>;
+};
 
 export default Auth;
