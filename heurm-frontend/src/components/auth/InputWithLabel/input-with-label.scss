@@ -1,0 +1,23 @@
+@import "utils";
+
+.input-with-label {
+  margin-top: 1rem;
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    @include font-style(1rem, $oc-gray-6);
+  }
+  input {
+    width: 100%;
+    border: 1px solid $oc-gray-3;
+    outline: none;
+    border-radius: 0px;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    &::placeholder {
+      color: $oc-gray-3;
+    }
+  }
+}
