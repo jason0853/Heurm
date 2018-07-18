@@ -4,12 +4,21 @@ import AuthContent from 'components/auth/AuthContent';
 import InputWithLabel from 'components/auth/InputWithLabel';
 import AuthButton from 'components/auth/AuthButton';
 import RightAlignedLink from 'components/auth/RightAlignedLink';
-import { AuthActions } from 'store/actionCreators';
+import AuthError from 'components/auth/AuthError';
+import { AuthActions, UserActions } from 'store/actionCreators';
+import storage from 'lib/storage';
 
 class LoginContainer extends Component {
   componentWillUnmount() {
     AuthActions.initializeForm('login');
   }
+
+  handleError = error => {
+    AuthActions.setError({
+      form: 'login',
+      error
+    });
+  };
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -20,9 +29,25 @@ class LoginContainer extends Component {
     });
   };
 
+  handleClick = async () => {
+    const { form, history } = this.props;
+    const { email, password } = form;
+
+    try {
+      await AuthActions.localLogin({ email, password });
+      const loggedInfo = this.props.result;
+      storage.set('loggedInfo', loggedInfo);
+      UserActions.setLoggedInfo(loggedInfo);
+      history.push('/');
+    } catch (err) {
+      this.handleError('잘못된 계정정보입니다.');
+    }
+  };
+
   render() {
-    const { email, password } = this.props.form;
-    const { handleChange } = this;
+    const { error, form } = this.props;
+    const { email, password } = form;
+    const { handleChange, handleClick } = this;
 
     return (
       <AuthContent title="로그인">
@@ -41,7 +66,8 @@ class LoginContainer extends Component {
           value={password}
           onChange={handleChange}
         />
-        <AuthButton>로그인</AuthButton>
+        {error && <AuthError>{error}</AuthError>}
+        <AuthButton onClick={handleClick}>로그인</AuthButton>
         <RightAlignedLink path="/auth/register">회원가입</RightAlignedLink>
       </AuthContent>
     );
@@ -49,5 +75,7 @@ class LoginContainer extends Component {
 }
 
 export default connect(({ auth }) => ({
-  form: auth.login.form
+  form: auth.login.form,
+  error: auth.login.error,
+  result: auth.result
 }))(LoginContainer);

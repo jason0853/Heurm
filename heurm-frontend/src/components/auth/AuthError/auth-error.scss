@@ -1,0 +1,7 @@
+@import "utils";
+
+.auth-error {
+  margin: 1rem 0;
+  @include font-style(1.25rem, $oc-red-7, 500);
+  text-align: center;
+}
