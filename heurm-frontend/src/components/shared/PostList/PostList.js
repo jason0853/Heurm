@@ -1,23 +1,10 @@
 import React from 'react';
 import Post from 'components/shared/Post';
 
-const PostList = () => {
-  return (
-    <div className="post-list">
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-    </div>
-  );
+const PostList = ({ posts }) => {
+  const postList = posts.map(post => <Post key={post._id} post={post} />);
+
+  return <div className="post-list">{postList}</div>;
 };
 
 export default PostList;
