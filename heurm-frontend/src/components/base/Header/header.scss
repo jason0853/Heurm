@@ -11,6 +11,7 @@
   background: $white;
   border-bottom: 2px solid $oc-teal-6;
   @include material-shadow();
+  z-index: 20;
   a {
     margin-left: 1.5rem;
     @include font-style(1.5rem, $oc-teal-7, bold);

@@ -3,9 +3,11 @@ const api = new Router();
 const auth = require('./auth');
 const books = require('./books');
 const posts = require('./posts');
+const users = require('./users');
 
 api.use('/auth', auth.routes());
 api.use('/books', books.routes());
 api.use('/posts', posts.routes());
+api.use('/users', users.routes());
 
 module.exports = api;

@@ -1,0 +1,9 @@
+@import "utils";
+
+.progress {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 4px;
+  background: $oc-cyan-4;
+}

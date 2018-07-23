@@ -10,7 +10,8 @@
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.1.5"
+    "mongoose": "^5.1.5",
+    "react-timeago": "3.2.1"
   },
   "devDependencies": {
     "prettier-eslint": "^8.8.1"

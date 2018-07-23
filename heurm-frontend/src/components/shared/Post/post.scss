@@ -1,0 +1,12 @@
+@import "utils";
+
+.post {
+  width: 100%;
+  // width: calc((100% - 32px) / 3);
+  // display: inline-block;
+  margin: 0 5px;
+  height: 400px;
+  margin-bottom: 1rem;
+  background: white;
+  @include material_shadow();
+}
