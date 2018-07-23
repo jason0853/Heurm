@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header, { LoginButton } from 'components/base/Header';
-import { UserActions } from 'store/actionCreators';
-import storage from 'lib/storage';
+import Header, { LoginButton, UserThumbnail } from 'components/base/Header';
+import UserMenuContainer from 'containers/base/UserMenuContainer';
+import { BaseActions } from 'store/actionCreators';
+// import storage from 'lib/storage';
 
 class HeaderContainer extends Component {
-  handleLogout = async () => {
-    try {
-      await UserActions.logout();
-    } catch (err) {
-      console.log(err);
-    }
-
-    storage.remove('loggedInfo');
-    window.location.href = '/';
+  handleThumbnailClick = () => {
+    BaseActions.setUserMenuVisibility(true);
   };
 
   render() {
     const { visible, user } = this.props;
-    const { handleLogout } = this;
+    const { handleThumbnailClick } = this;
     if (!visible) return null;
 
     return (
       <Header>
         {user.logged ? (
-          <div>
-            {user.loggedInfo.username}
-            <div onClick={handleLogout}>로그아웃</div>
-          </div>
+          <UserThumbnail
+            thumbnail={user.loggedInfo.thumbnail}
+            onClick={handleThumbnailClick}
+          />
         ) : (
           <LoginButton />
         )}
+        <UserMenuContainer />
       </Header>
     );
   }
