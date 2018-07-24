@@ -4,7 +4,7 @@ import Post from 'components/shared/Post';
 const PostList = ({ posts }) => {
   const postList = posts.map(post => <Post key={post._id} post={post} />);
 
-  return <div className="post-list">{postList}</div>;
+  return <ul className="post-list">{postList}</ul>;
 };
 
 export default PostList;

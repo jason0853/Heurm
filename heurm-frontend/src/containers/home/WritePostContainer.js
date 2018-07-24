@@ -11,6 +11,11 @@ class WritePostContainer extends Component {
   };
 
   handlePost = async () => {
+    this.input.blur();
+    setTimeout(() => {
+      this.input.focus();
+    }, 100);
+
     const { value } = this.props;
 
     const message = message => (
@@ -44,7 +49,12 @@ class WritePostContainer extends Component {
     const { value } = this.props;
 
     return (
-      <WritePost value={value} onChange={handleChange} onPost={handlePost} />
+      <WritePost
+        value={value}
+        onChange={handleChange}
+        onPost={handlePost}
+        inputRef={ref => (this.input = ref)}
+      />
     );
   }
 }

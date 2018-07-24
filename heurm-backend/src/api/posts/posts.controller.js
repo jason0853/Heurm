@@ -1,6 +1,8 @@
 const Account = require('models/account');
 const Post = require('models/post');
 const Joi = require('joi');
+const redis = require('redis');
+const publisher = redis.createClient();
 const ObjectId = require('mongoose').Types.ObjectId;
 
 exports.write = async ctx => {
@@ -61,6 +63,14 @@ exports.write = async ctx => {
   }
 
   ctx.body = post;
+
+  publisher.publish(
+    'posts',
+    JSON.stringify({
+      type: 'posts/RECEIVE_NEW_POST',
+      payload: post
+    })
+  );
 };
 
 exports.list = async ctx => {
